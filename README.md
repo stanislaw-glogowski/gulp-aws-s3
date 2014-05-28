@@ -42,8 +42,10 @@ During the execution of the method
 Upload file to s3
 
 The following options are supported:
-* `acl` the canned ACL to apply to the object, default `public-read`. Possible values include: `private`, `public-read`, `public-read-write`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+* `acl` the canned ACL to apply to the object, default `public-read`
 * `path` s3 base path, default `/`
+
+Possible values of `acl` include: `private`, `public-read`, `public-read-write`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
 
 
 ## Test
