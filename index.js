@@ -1,6 +1,7 @@
-var _   = require('underscore'),
-    es  = require('event-stream'),
-    AWS = require('aws-sdk');
+var _     = require('underscore'),
+    es    = require('event-stream'),
+    AWS   = require('aws-sdk'),
+    gutil = require('gulp-util');
 
 /**
  * plugin name
@@ -45,7 +46,7 @@ var plugin = {
 
         _.defaults(options, {
             acl  : 'public-read',
-            path : '/'
+            path : ''
         });
 
         if (!config.key) {
@@ -81,14 +82,58 @@ var plugin = {
                 throw new Error('Missing option `key`');
             }
 
-            var params = {
-                Bucket : config.bucket,
-                Key    : options.key,
-                ACL    : options.acl,
-                Body   : file.contents
-            };
+            var keyParts  = options.key.split('.'),
+                extension = keyParts.length > 1 ? keyParts[keyParts.length - 1] : null,
+                params    = {
+                    Bucket : config.bucket,
+                    Key    : options.key,
+                    ACL    : options.acl,
+                    Body   : file.contents
+                };
+
+            if (extension) {
+                var suffix   = extension,
+                    encoding = 'plain';
+
+                switch (suffix) {
+                    case 'js':
+                        suffix   = 'javascript';
+                        encoding = 'text';
+                        break;
+
+                    case 'css':
+                    case 'html':
+                        encoding = 'text';
+                        break;
+
+                    case 'jpg':
+                        encoding = 'image';
+                        suffix   = 'jpeg';
+                        break;
+
+                    case 'png':
+                    case 'bmp':
+                    case 'gif':
+                        encoding = 'image';
+                        break;
+
+                    default:
+                        suffix = 'text';
+                }
+                params['ContentType'] = encoding + '/' + suffix;
+                if (file.stat) {
+                    params['ContentLength'] = file.stat.size;
+                }
+            }
 
             s3.putObject(params, function(err) {
+                if (err) {
+                    gutil.log('S3::putObject', "'" + gutil.colors.red(options.key) + "'", gutil.colors.red('error!'));
+                    throw err;
+                } else {
+                    gutil.log('S3::putObject', "'" + gutil.colors.cyan(options.key) + "'", 'send');
+                    gutil.beep();
+                }
                 callback(err);
             });
         });
