@@ -5,8 +5,54 @@
 $ npm install gulp-aws-s3
 ```
 
-### Test
+### Configuration
+Using environment variables
 ```bash
+export AWS_ACCESS_KEY_ID="<value>"
+export AWS_SECRET_ACCESS_KEY="<value>"
+export AWS_REGION="<value>"
+export AWS_BUCKET="<value>"
+```
+
+Using plugin `config()` method
+```javascript
+var gulpAwsS3 = require('gulp-aws-s3').config({
+    key    : '<value>',
+    secret : '<value>',
+    region : '<value>',
+    bucket : '<value>'
+});
+```
+
+During the execution of the method
+```javascript
+...
+    .pipe(gulpAwsS3.upload({<param>}, {
+        key    : '<value>',
+        secret : '<value>',
+        region : '<value>',
+        bucket : '<value>'
+    });
+...
+```
+
+## Api
+
+### gulpAwsS3#upload(options:Object, config:Object)
+Upload file to s3
+
+The following options are supported:
+* `acl` the canned ACL to apply to the object, default `public-read`. Possible values include: `private`, `public-read`, `public-read-write`, `authenticated-read`, `bucket-owner-read`, `bucket-owner-full-control`
+* `path` s3 base path, default `/`
+
+
+## Test
+```bash
+export AWS_ACCESS_KEY_ID="<value>"
+export AWS_SECRET_ACCESS_KEY="<value>"
+export AWS_REGION="<value>"
+export AWS_BUCKET="<value>"
+
 $ npm test
 ```
 

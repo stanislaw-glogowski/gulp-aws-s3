@@ -1,0 +1,35 @@
+{
+  "name": "gulp-aws-s3",
+  "description": "AWS S3 plugin for Gulp",
+  "author": {
+    "name": "Stanislaw Glogowski",
+    "email": "stanislaw.glogowski@newobject.pl"
+  },
+  "version": "0.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/stanislaw-glogowski/gulp-aws-s3.git"
+  },
+  "bugs": {
+    "url": "https://github.com/stanislaw-glogowski/gulp-aws-s3/issues"
+  },
+  "licenses": "MIT",
+  "homepage": "https://github.com/stanislaw-glogowski/gulp-aws-s3",
+  "main": "index.js",
+  "dependencies": {
+    "underscore": "~1.6",
+    "event-stream": "~3.1",
+    "gulp-util": "~2.2",
+    "aws-sdk": "~2",
+    "async": "~0.2"
+  },
+  "devDependencies": {
+    "mocha": "~1.19"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/mocha --ui bdd"
+  },
+  "engines": {
+    "node": ">=0.10.0"
+  }
+}
