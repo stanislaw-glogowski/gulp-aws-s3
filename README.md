@@ -14,7 +14,7 @@ export AWS_REGION="<value>"
 export AWS_BUCKET="<value>"
 ```
 
-Using plugin `config()` method
+Using plugin `setup()` method
 ```javascript
 var gulpAwsS3 = require('gulp-aws-s3').setup({
     key    : '<value>',
