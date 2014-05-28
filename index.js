@@ -22,10 +22,10 @@ var plugin = {
     },
 
     /**
-     * config update
+     * config setup
      * @returns {plugin}
      */
-    config : function() {
+    setup : function() {
         var config = arguments[0] || {};
         _.each(this.defaults, function(value, key) {
             config[key] = config[key] ? config[key] : value;
@@ -102,4 +102,4 @@ var plugin = {
  * expose
  * @type {*|plugin}
  */
-module.exports = plugin.config();
+module.exports = plugin.setup();
