@@ -27,7 +27,7 @@ var gulpAwsS3 = require('gulp-aws-s3').config({
 During the execution of the method
 ```javascript
 ...
-    .pipe(gulpAwsS3.upload({<param>}, {
+    .pipe(gulpAwsS3.upload({<options>}, {
         key    : '<value>',
         secret : '<value>',
         region : '<value>',
