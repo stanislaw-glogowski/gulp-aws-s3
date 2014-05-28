@@ -24,7 +24,7 @@ var gulpAwsS3 = require('gulp-aws-s3').setup({
 });
 ```
 
-During the execution of the method
+During method execution
 ```javascript
 ...
     .pipe(gulpAwsS3.upload({<options>}, {
