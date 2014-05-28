@@ -23,14 +23,11 @@ var plugin = {
 
     /**
      * config setup
+     * @param config
      * @returns {plugin}
      */
-    setup : function() {
-        var config = arguments[0] || {};
-        _.each(this.defaults, function(value, key) {
-            config[key] = config[key] ? config[key] : value;
-        });
-        this.config = config;
+    setup : function(config) {
+        this.config = _.defaults({}, config, this.config);
         return this;
     },
 
@@ -102,4 +99,4 @@ var plugin = {
  * expose
  * @type {*|plugin}
  */
-module.exports = plugin.setup();
+module.exports = plugin;
