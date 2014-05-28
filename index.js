@@ -28,7 +28,7 @@ var plugin = {
      * @returns {plugin}
      */
     setup : function(config) {
-        this.config = _.defaults({}, config, this.config);
+        this.config = _.defaults({}, config, this.config, this.defaults);
         return this;
     },
 
