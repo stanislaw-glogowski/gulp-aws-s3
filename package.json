@@ -1,11 +1,16 @@
 {
   "name": "gulp-aws-s3",
   "description": "AWS S3 plugin for Gulp",
+  "keywords": [
+    "gulp",
+    "s3",
+    "upload"
+  ],
   "author": {
     "name": "Stanislaw Glogowski",
     "email": "stanislaw.glogowski@newobject.pl"
   },
-  "version": "0.0.7",
+  "version": "0.0.8",
   "repository": {
     "type": "git",
     "url": "https://github.com/stanislaw-glogowski/gulp-aws-s3.git"
