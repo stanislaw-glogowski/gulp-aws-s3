@@ -1,4 +1,4 @@
-var _     = require('underscore'),
+var _     = require('lodash'),
     es    = require('event-stream'),
     AWS   = require('aws-sdk'),
     gutil = require('gulp-util');
