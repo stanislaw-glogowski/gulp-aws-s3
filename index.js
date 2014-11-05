@@ -121,6 +121,9 @@ var plugin = {
                         suffix = 'text';
                 }
                 params['ContentType'] = encoding + '/' + suffix;
+                for (var key in options.params || {}) {
+                  params[key] = options.params[key];
+                }
                 if (file.stat) {
                     params['ContentLength'] = file.stat.size;
                 }
