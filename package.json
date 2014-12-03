@@ -10,7 +10,7 @@
     "name": "Stanislaw Glogowski",
     "email": "stanislaw.glogowski@newobject.pl"
   },
-  "version": "0.0.9",
+  "version": "0.0.10",
   "repository": {
     "type": "git",
     "url": "https://github.com/stanislaw-glogowski/gulp-aws-s3.git"
@@ -22,10 +22,11 @@
   "homepage": "https://github.com/stanislaw-glogowski/gulp-aws-s3",
   "main": "index.js",
   "dependencies": {
-    "lodash": "2.4.1",
-    "event-stream": "3.1.7",
-    "gulp-util": "3.0.0",
-    "aws-sdk": "2.0.14"
+    "lodash": "^2.4.1",
+    "event-stream": "^3.1.7",
+    "gulp-util": "^3.0.0",
+    "aws-sdk": "^2.0.14",
+    "mime": "^1.2.11"
   },
   "devDependencies": {
     "mocha": "~1.19"

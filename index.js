@@ -1,6 +1,7 @@
 var _     = require('lodash'),
     es    = require('event-stream'),
     AWS   = require('aws-sdk'),
+    mime  = require('mime'),
     gutil = require('gulp-util');
 
 /**
@@ -16,10 +17,10 @@ var plugin = {
      * default config values
      */
     defaults : {
-        key    : process.env.AWS_ACCESS_KEY_ID     || null,
+        key    : process.env.AWS_ACCESS_KEY_ID || null,
         secret : process.env.AWS_SECRET_ACCESS_KEY || null,
-        region : process.env.AWS_REGION            || null,
-        bucket : process.env.AWS_BUCKET            || null
+        region : process.env.AWS_REGION || null,
+        bucket : process.env.AWS_BUCKET || null
     },
 
     /**
@@ -38,7 +39,7 @@ var plugin = {
      */
     upload : function() {
         var options = arguments[0] || {},
-            config  = arguments[1] || {};
+            config = arguments[1] || {};
 
         _.each(this.config, function(value, key) {
             config[key] = config[key] ? config[key] : value;
@@ -82,9 +83,9 @@ var plugin = {
                 throw new Error('Missing option `key`');
             }
 
-            var keyParts  = options.key.split('.'),
+            var keyParts = options.key.split('.'),
                 extension = keyParts.length > 1 ? keyParts[keyParts.length - 1] : null,
-                params    = {
+                params = {
                     Bucket : config.bucket,
                     Key    : options.key,
                     ACL    : options.acl,
@@ -92,38 +93,13 @@ var plugin = {
                 };
 
             if (extension) {
-                var suffix   = extension,
-                    encoding = 'plain';
+                params['ContentType'] = mime.lookup(file.path);
 
-                switch (suffix) {
-                    case 'js':
-                        suffix   = 'javascript';
-                        encoding = 'text';
-                        break;
+                _.each(options.params || {}, function(value, key) {
+                    params[key] = value;
 
-                    case 'css':
-                    case 'html':
-                        encoding = 'text';
-                        break;
+                })
 
-                    case 'jpg':
-                        encoding = 'image';
-                        suffix   = 'jpeg';
-                        break;
-
-                    case 'png':
-                    case 'bmp':
-                    case 'gif':
-                        encoding = 'image';
-                        break;
-
-                    default:
-                        suffix = 'text';
-                }
-                params['ContentType'] = encoding + '/' + suffix;
-                for (var key in options.params || {}) {
-                  params[key] = options.params[key];
-                }
                 if (file.stat) {
                     params['ContentLength'] = file.stat.size;
                 }
