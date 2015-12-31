@@ -74,7 +74,7 @@ var plugin = {
                 region          : config.region
             });
 
-            if (file.path) {
+            if (!options.key && file.path) {
                 options.key = file.path.replace(file.base, options.path || '');
                 options.key = options.key.replace(new RegExp('\\\\', 'g'), '/');
             }
