@@ -39,7 +39,7 @@ var plugin = {
      */
     upload : function() {
         var options = arguments[0] || {},
-            config = arguments[1] || {};
+            config  = arguments[1] || {};
 
         _.each(this.config, function(value, key) {
             config[key] = config[key] ? config[key] : value;
@@ -83,9 +83,9 @@ var plugin = {
                 throw new Error('Missing option `key`');
             }
 
-            var keyParts = options.key.split('.'),
+            var keyParts  = options.key.split('.'),
                 extension = keyParts.length > 1 ? keyParts[keyParts.length - 1] : null,
-                params = {
+                params    = {
                     Bucket : config.bucket,
                     Key    : options.key,
                     ACL    : options.acl,

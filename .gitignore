@@ -1,6 +1,6 @@
-/.*
-!/.gitattributes
-!/.gitignore
+.*
+!.gitattributes
+!.gitignore
 node_modules
 npm-debug.log
 .DS_Store
