@@ -110,7 +110,7 @@ var plugin = {
                     gutil.log('S3::putObject', "'" + gutil.colors.red(options.key) + "'", gutil.colors.red('error!'));
                     throw err;
                 } else {
-                    gutil.log('S3::putObject', "'" + gutil.colors.cyan(options.key) + "'", 'send');
+                    gutil.log('S3::putObject', "'" + gutil.colors.cyan(options.key) + "'", 'sent.');
                     gutil.beep();
                 }
                 callback(err);
