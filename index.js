@@ -74,7 +74,7 @@ var plugin = {
                 region          : config.region
             });
 
-            if (!options.key && file.path) {
+            if (file.path) {
                 options.key = file.path.replace(file.base, options.path || '');
                 options.key = options.key.replace(new RegExp('\\\\', 'g'), '/');
             }
@@ -107,10 +107,10 @@ var plugin = {
 
             s3.putObject(params, function(err) {
                 if (err) {
-                    gutil.log('S3::putObject', "'" + gutil.colors.red(options.key) + "'", gutil.colors.red('error!'));
+                    gutil.log('S3::putObject', "'" + gutil.colors.red(params.Key) + "'", gutil.colors.red('error!'));
                     throw err;
                 } else {
-                    gutil.log('S3::putObject', "'" + gutil.colors.cyan(options.key) + "'", 'sent.');
+                    gutil.log('S3::putObject', "'" + gutil.colors.cyan(params.Key) + "'", 'sent.');
                     gutil.beep();
                 }
                 callback(err);
