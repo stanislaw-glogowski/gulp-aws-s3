@@ -64,7 +64,7 @@ $ npm test
 
 The MIT License
 ```
-Copyright (c) 2016 Stanislaw Glogowski
+Copyright (c) 2017 Stanislaw Glogowski
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
