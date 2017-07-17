@@ -60,7 +60,10 @@ const plugin = {
 
     return es.map((file, callback) => {
       if (!file.isBuffer()) {
-        return false;
+        // fix: `Can't upload folders`
+        // https://github.com/stanislaw-glogowski/gulp-aws-s3/issues/2
+        // return false;
+        return;
       }
 
       const s3 = new AWS.S3({
