@@ -114,7 +114,7 @@ const plugin = {
         callback(err);
       });
 
-      return null;
+      return callback();
     });
   },
 };
